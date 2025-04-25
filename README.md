@@ -6,7 +6,7 @@ A full-stack enterprise web application simulating a student banking system, bui
 -Dynamic JSP pages with JSTL and Expression Language.
 -Servlet controllers handling business logic.
 -JPA entities and DAO pattern for database interaction.
--Hosted on WildFly 26 server with MySQL integration.
+-Hosted on WildFly 24 server with MySQL integration.
 -Partial implementation of RESTful API services.
 -Includes Entity Relationship Diagram (ERD) and Architecture Diagram.
 
