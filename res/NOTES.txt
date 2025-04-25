@@ -1,0 +1,86 @@
+Guidance to the template.
+-------------------------
+0.- Assumed you can run (3h? This is the hardest task!!)
+    + Eclipse-2022-12,
+    + Wildfly +26.1 (JEE 8)
+    + and MySQL (5.0,8.0) server running.
+
+
+1.- Inspect the provided code (1h.?) .
+    + DataBase (SQL file, .sql under res/ folder )
+	+ Model   (JPA classes, .java classes under model/ package)
+	+ DAO  (Transfer object, under dao/ package)
+	+ Controller (servlets, under controller/ package)
+	+ View    (JSP pages,   .jsp, .css, .html pages under jsp/ css/ html/ folder)
+	
+2.- The project is runnable, but incomplete. (1h?)
+	
+	2.1 Restore the database from bank.sql provided and be aware of many-to-one
+	    (mind the URL of your database, something like)
+	
+	                    jdbc:mysql://localhost:3306/mdb_rm6677j
+	 
+	2.2 To compile, make sure to setup the project runtime system to the one present in YOUR box. 
+    
+    2.3 See persistence.xml . Your Wildfly server should export a data source under 
+             java:/GreenwichBankSqlDS
+       You are responsible to link this to appropiate database.(add data-source)
+       
+3.- Model classes (Student StudentAccount) are complete. It is not necessary to change them.
+    Mind and understand the JPA annotations and the structure of class. (0h)
+    
+
+4.- Mind the DAO Interface and its implementation (GreenwichDAOImpl). (2h)
+  	Some of them are empty on implementation on purpose. Others are incomplete.
+  	You should check the slides and teaching material from lectures and labs
+  	(Hint: entityManager calls, etc...)
+  	
+5.- Focus in controller: 2 subsystems:
+	+ students
+	+ student accounts.  
+	
+	Mind the dispatching part "switch (action)". Mind the CRUD actions (list,add,update,delete).
+	
+	- Corresponding methods (getAllStudents(...), addStudent(...))
+	
+	Some of them are empty on implementation on purpose. Others are incomplete.
+	
+	You should check the slides and teaching material from lectures and labs
+  	(Hint)
+  	+ Retrieving data  (getParameter) (see JSP files to see the names of input controls)
+  	+ Calling the DAO object corresponding operation (greenWichDAOImpl) (list, add, update)
+  	
+  	- Out of "switch (action)"
+  	
+  	+ (set attributes for dispatcher objects)
+  	Set attributes for request (setAttribute) with the names JSP pages are accesing them.
+  	("students","accounts"). (DONE)
+  	
+  	
+6.-  The View (JSP Pages)
+    6.1 
+    
+    Initially all of them provide static data (HTML) .
+    You should reprogram it with JSTL (foreach) retrieveing the data from the request. 
+    (The name of the collections of beans should match the one set as attribute for request
+    in previous section)
+    In some cases (addAcountModal), you would need to populate also the students in the 
+    select HTML tag. 
+    
+    6.2 
+    
+    Explore the contents of modal .jsp (edit,add,delete). The attribute "name" of each input
+    control will reveal the name of parameter to be collected in servlet.
+    
+    
+
+Account
+====
+
+http://localhost:8080/GreeenwichBank/account-controller
+
+
+Student
+======
+
+http://localhost:8080/GreeenwichBank/student-controller
